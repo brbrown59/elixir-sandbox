@@ -17,10 +17,10 @@ defmodule ElixirsandboxWeb.Components.FormLive do
   end
 
   def handle_event("toggle_form", %{"show" => "true"}, socket) do
-    socket.assign(:show_form, true)
+    {:noreply, assign(socket, :show_form, true)}
   end
 
   def handle_event("toggle_form", %{"show" => "false"}, socket) do
-    socket.assign(:show_form, false)
+    {:noreply, assign(socket, :show_form, false)}
   end
 end
