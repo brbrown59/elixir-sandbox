@@ -15,7 +15,10 @@ config :elixirsandbox, ElixirsandboxWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "pOus11lI/GoLiDqT2WSMzuDWXr/Iug4yxADYlRHIJWIFfjrMb4lwEhwMigPQwNmA",
   render_errors: [view: ElixirsandboxWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Elixirsandbox.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Elixirsandbox.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [
+    signing_salt: "FCse05x2q37NF0b9YUO/IF+U43zHoAKy"
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
