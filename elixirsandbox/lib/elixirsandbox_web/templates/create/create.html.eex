@@ -3,4 +3,9 @@
   <p>This is where you write the thing</p>
 </section>
 
-<%= live_render(@conn, ElixirsandboxWeb.Components.FormLive)%>
+
+<%= live_render(@conn, ElixirsandboxWeb.Components.FormLive, session: %{
+  show_form: false,
+  thing_name: "",
+  thing: ""
+})%>

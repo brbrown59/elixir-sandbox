@@ -1,1 +1,6 @@
-<div>This is a test</div>
+<div>Would you like to make a thing?</div>
+<button type="button" phx-click="toggle_form" phx-value-show="true">Yes</button>
+<button type="button" phx-click="toggle_form" phx-value-show="false">No</button>
+<%= if @show_form do %>
+<div>test</div>
+<% end %>
