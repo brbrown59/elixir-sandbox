@@ -2,5 +2,13 @@
 <button type="button" phx-click="toggle_form" phx-value-show="true">Yes</button>
 <button type="button" phx-click="toggle_form" phx-value-show="false">No</button>
 <%= if @show_form do %>
-<div>test</div>
+  <%= form_for @thing, "#", [phx_change: :validate, phx_submit: :save], fn f -> %>
+    <%= label f, :name, "Name the thing:" %>
+    <%= text_input f, :name %>
+
+    <%= label f, :content, "The thing" %>
+    <%= text_input f, :content %>
+
+    <%= submit "Save" %>
+  <% end %>
 <% end %>

@@ -5,7 +5,5 @@
 
 
 <%= live_render(@conn, ElixirsandboxWeb.Components.FormLive, session: %{
-  show_form: false,
-  thing_name: "",
-  thing: ""
+  show_form: false
 })%>
