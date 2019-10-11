@@ -8,12 +8,17 @@
 <button type="button" phx-click="toggle_form" phx-value-show="false">No</button>
 <%= if @show_form do %>
   <%= form_for @thing, "#", [phx_submit: :save], fn f -> %>
-    <%= label f, :name, "Name the thing:" %>
+    <%= label f, :name, "What is your name?" %>
     <%= text_input f, :name %>
 
-    <%= label f, :content, "The thing" %>
+    <%= label f, :content, "What is the thing you want to make?" %>
     <%= text_input f, :content %>
 
     <%= submit "Save" %>
   <% end %>
 <% end %>
+
+<%= if @show_success do %>
+  <div>Hey, you submitted the thing!</div>
+<% end %>
+

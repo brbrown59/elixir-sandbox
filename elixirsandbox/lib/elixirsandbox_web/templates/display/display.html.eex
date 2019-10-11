@@ -1,6 +1,6 @@
 <section class="phx-hero">
   <h1>Display the things</h1>
-  <p>This is where you display the things</p>
+  <p>This is where you display all of the things</p>
 </section>
 
 <%= for thing <- @things do %>
