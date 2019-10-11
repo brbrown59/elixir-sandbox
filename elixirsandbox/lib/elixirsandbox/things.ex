@@ -1,8 +1,16 @@
 defmodule Elixirsandbox.Things do
   import Ecto.Query, warn: false
   alias Elixirsandbox.Repo
+  alias Elixirsandbox.Things.Thing
 
-  # add "getters" here later
+  def get_all_things() do
+    query =
+      from(thing in Thing,
+        select: thing
+      )
+
+    {:ok, Repo.all(query)}
+  end
 
   def create_thing(thing) do
     Repo.insert_or_update(thing)
