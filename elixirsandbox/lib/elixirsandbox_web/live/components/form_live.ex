@@ -3,8 +3,8 @@ defmodule ElixirsandboxWeb.Components.FormLive do
   use Phoenix.HTML
 
   alias ElixirsandboxWeb.FormView
-  alias ElixirsandboxWeb.Schemas.Thing, as: Schema
-  alias Elixirsandbox.Thing
+  alias Elixirsandbox.Things.Thing
+  alias Elixirsandbox.Things
 
   def render(assigns) do
     FormView.render("_form.live.html", assigns)
@@ -12,7 +12,7 @@ defmodule ElixirsandboxWeb.Components.FormLive do
 
   def mount(session, socket) do
     show_form = Map.fetch!(session, :show_form)
-    thing = Schema.changeset(%Schema{}, %{"name" => "", "content" => ""})
+    thing = Thing.changeset(%Thing{}, %{"name" => "", "content" => ""})
     {:ok, assign(socket, show_form: show_form, thing: thing)}
   end
 
@@ -25,8 +25,8 @@ defmodule ElixirsandboxWeb.Components.FormLive do
   end
 
   def handle_event("save", %{"thing" => %{"name" => name, "content" => content}}, socket) do
-    thing = Schema.changeset(%Schema{}, %{"name" => name, "content" => content})
-    Thing.create_thing(thing)
+    thing = Thing.changeset(%Thing{}, %{"name" => name, "content" => content})
+    Things.create_thing(thing)
     {:noreply, assign(socket, :thing, thing)}
   end
 end
