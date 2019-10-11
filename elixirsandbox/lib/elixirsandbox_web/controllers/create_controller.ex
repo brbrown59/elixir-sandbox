@@ -1,7 +1,8 @@
 defmodule ElixirsandboxWeb.CreateController do
   use ElixirsandboxWeb, :controller
+  import Phoenix.LiveView.Controller
 
   def show(conn, _params) do
-    render(conn, "create.html")
+    live_render(conn, ElixirsandboxWeb.Components.FormLive, session: %{show_form: false})
   end
 end
