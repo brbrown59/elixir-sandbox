@@ -4,6 +4,6 @@
 </section>
 
 <%= for thing <- @things do %>
-  <%= display_thing(thing) %>
+  <%= display_thing_and_name(thing) %>
   <br/>
 <% end %>

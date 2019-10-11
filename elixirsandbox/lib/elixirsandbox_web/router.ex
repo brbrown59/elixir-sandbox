@@ -21,7 +21,9 @@ defmodule ElixirsandboxWeb.Router do
 
     get("/create", CreateController, :show)
 
-    get("/display", DisplayController, :show)
+    get("/display", DisplayController, :index)
+
+    get("/display/:name", DisplayController, :show)
   end
 
   # Other scopes may use custom stacks.

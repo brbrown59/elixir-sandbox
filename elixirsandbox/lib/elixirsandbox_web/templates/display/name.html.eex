@@ -1,0 +1,9 @@
+<section class="phx-hero">
+  <h1><%= gettext("Display %{name}'s things ", name: @name) %></h1>
+  <p><%= gettext("This is where you display the things that %{name} wrote", name: @name) %></p>
+</section>
+
+<%= for thing <- @things do %>
+  <%= display_thing(thing) %>
+  <br/>
+<% end %>
