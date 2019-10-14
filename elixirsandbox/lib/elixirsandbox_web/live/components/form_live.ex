@@ -5,6 +5,7 @@ defmodule ElixirsandboxWeb.Components.FormLive do
   alias ElixirsandboxWeb.FormView
   alias Elixirsandbox.Things.Thing
   alias Elixirsandbox.Things
+  alias Ecto.Changeset
 
   def render(assigns) do
     FormView.render("_form.live.html", assigns)
@@ -13,7 +14,9 @@ defmodule ElixirsandboxWeb.Components.FormLive do
   def mount(session, socket) do
     show_form = Map.fetch!(session, :show_form)
     thing = Thing.changeset(%Thing{}, %{"name" => "", "content" => ""})
-    {:ok, assign(socket, show_form: show_form, thing: thing, show_success: false)}
+
+    {:ok,
+     assign(socket, show_form: show_form, thing: thing, show_success: false, show_failure: false)}
   end
 
   def handle_event("toggle_form", %{"show" => "true"}, socket) do
@@ -27,7 +30,18 @@ defmodule ElixirsandboxWeb.Components.FormLive do
   def handle_event("save", %{"thing" => %{"name" => name, "content" => content}}, socket) do
     thing = Thing.changeset(%Thing{}, %{"name" => name, "content" => content})
     # this needs success validation
-    Things.create_thing(thing)
-    {:noreply, assign(socket, thing: thing, show_form: false, show_success: true)}
+    case Things.create_thing(thing) do
+      {:ok, response} ->
+        {:noreply,
+         assign(socket, thing: thing, show_form: false, show_success: true, show_failure: false)}
+
+      {:error, %Changeset{} = changeset} ->
+        {:noreply,
+         assign(socket,
+           thing: Thing.changeset(%Thing{}, %{"name" => "", "content" => ""}),
+           show_form: true,
+           show_failure: true
+         )}
+    end
   end
 end

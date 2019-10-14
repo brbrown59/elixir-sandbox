@@ -22,3 +22,7 @@
   <div>Hey, you submitted the thing!</div>
 <% end %>
 
+<%= if @show_failure do %>
+  <div>Ya screwed up, dummy. Try making a shorter thing.</div>
+<% end %>
+
