@@ -29,11 +29,17 @@ defmodule ElixirsandboxWeb.Components.FormLive do
 
   def handle_event("save", %{"thing" => %{"name" => name, "content" => content}}, socket) do
     thing = Thing.changeset(%Thing{}, %{"name" => name, "content" => content})
-    # this needs success validation
+
     case Things.create_thing(thing) do
       {:ok, response} ->
         {:noreply,
-         assign(socket, thing: thing, show_form: false, show_success: true, show_failure: false)}
+         assign(socket,
+           thing: thing,
+           show_form: false,
+           show_success: true,
+           show_failure: false,
+           display_name: name
+         )}
 
       {:error, %Changeset{} = changeset} ->
         {:noreply,

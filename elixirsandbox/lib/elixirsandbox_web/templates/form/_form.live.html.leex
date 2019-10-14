@@ -20,6 +20,9 @@
 
 <%= if @show_success do %>
   <div>Hey, you submitted the thing!</div>
+  <%= link("See all the things!", to: "/display")%>
+  <br/>
+  <%= link("See all of #{@display_name}'s things!", to: "/display/#{@display_name}")%>
 <% end %>
 
 <%= if @show_failure do %>
