@@ -3,6 +3,9 @@
   <p>This is where you display all of the things</p>
 </section>
 
+<div>Person with the most things: <%=link("#{@top_name}", to: "/display/#{@top_name}")%></div>
+<br/>
+
 <%= for thing <- @things do %>
   <%= display_thing_and_name(thing) %>
   <br/>

@@ -22,6 +22,17 @@ defmodule Elixirsandbox.Things do
     {:ok, Repo.all(query)}
   end
 
+  def get_frequently_used_names() do
+    query =
+      from(thing in Thing,
+        select: thing.name,
+        group_by: thing.name,
+        order_by: [desc: count(thing.name)]
+      )
+
+    {:ok, Repo.all(query) |> Enum.at(0)}
+  end
+
   def create_thing(thing) do
     Repo.insert_or_update(thing)
   end

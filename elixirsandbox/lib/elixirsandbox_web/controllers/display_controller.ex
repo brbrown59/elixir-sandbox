@@ -3,8 +3,9 @@ defmodule ElixirsandboxWeb.DisplayController do
   alias Elixirsandbox.Things
 
   def index(conn, _params) do
-    with {:ok, things} <- Things.get_all_things() do
-      render(conn, "display.html", things: things)
+    with {:ok, things} <- Things.get_all_things(),
+         {:ok, top_name} <- Things.get_frequently_used_names() do
+      render(conn, "display.html", things: things, top_name: top_name)
     end
   end
 
