@@ -4,7 +4,7 @@ defmodule ElixirsandboxWeb.DisplayView do
   def display_thing_and_name(thing) do
     ~E"""
       <div>NAME:</div>
-      <div> <%= thing.name %></div>
+      <div> <%= link(thing.name, to: "/display/#{thing.name}") %></div>
       <div>THING:</div>
       <div> <%= thing.content %></div>
     """
