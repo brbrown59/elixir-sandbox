@@ -8,4 +8,9 @@
   <br/>
 <% end %>
 
+<%= if length(@things) <= 0 do %>
+  <div><%= gettext("Oops, %{name} hasn't made any things T.T", name: @name) %></div>
+<% end %>
+
+
 <%= link("Make your own things!", to: "/create")%>
